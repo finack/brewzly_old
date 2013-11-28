@@ -1,8 +1,9 @@
-# App Prototype
+# Brewzly
 
-...
+[![Build Status](https://travis-ci.org/finack/brewzly.png?branch=master)](https://travis-ci.org/finack/brewzly)
+[![Code Climate](https://codeclimate.com/github/finack/brewzly.png)](https://codeclimate.com/github/finack/brewzly)
 
-Generated with [Raygun](https://github.com/carbonfive/raygun).
+[Tracker](https://www.pivotaltracker.com/s/projects/850499)
 
 # Requirements
 
@@ -31,20 +32,19 @@ To run all ruby and jasmine specs.
 
     $ rake
 
-Again, with coverage for the ruby specs:
-
-    $ rake spec:coverage
-
 ### Running the Application Locally
 
-    $ foreman start
+    $ rails server
     $ open http://localhost:3000
 
 ### Using Guard
 
-Guard is configured to run ruby and jasmine specs, and also listen for livereload connections. Growl is used for notifications.
+Guard is configured to either tests or servers.
 
-    $ bundle exec guard
+```sh
+bundle exec guard # Launches your test suite
+bundle exec guard -g server # Launches Rails and Livereload
+```
 
 ### Using Mailcatcher
 
@@ -54,37 +54,47 @@ Guard is configured to run ruby and jasmine specs, and also listen for livereloa
 
 Learn more at [mailcatcher.me](http://mailcatcher.me/). And please don't add mailcatcher to the Gemfile.
 
-### Continuous Integration and Deployment with CircleCI
-
-This project is configured for continuous integration and deployment with CircleCI and Heroku. Follow
-these steps for first time configuration:
-
-1. Push the project to Github, if you haven't already.
-1. Authenticate at circleci.com and follow this project.
-1. Be sure to enable Heroku deploys from the project settings on CircleCI.
-1. The project should automatically be deployed on every successful build.
-
-Check out [circle.yml](circle.yml) and [bin/deploy.sh](bin/deploy.sh) for details.
-
-### Manual Deploy to Heroku
+# Heroku
 
 Install the Heroku toolbelt if you don't already have it (https://toolbelt.heroku.com/).
 
-    $ heroku apps:create app-prototype
-    $ git push heroku master
-    $ heroku run rake db:setup
+## Quick Reference
+
+```sh
+heroku open
+
+heroku addons:docs newrelic
+heroku addons:docs rollbar
+
+git push heroku staging feature/foo:master
+```
+
+## Setting up a new container
+
+```sh
+heroku apps:create brewzly-staging
+
+heroku addons:add newrelic:stark
+herolu addons:add rollbar:free
+
+heroku config:set RACK_ENV=staging 
+
+heroku git:remote -a brewzly-staging -r staging
+git push heroku staging feature/foo:master
+heroku run rake db:setup
+```
 
 ### Environment Variables
 
 Several common features and operational parameters can be set using environment variables. These are all optional.
 
 * ```HOSTNAME``` - Canonical hostname for this application. Other incoming requests will be redirected to this hostname.
-* ```BASIC_AUTH_PASSWORD``` - Enable basic auth with this password.
-* ```BASIC_AUTH_USER``` - Set a basic auth username (not required, password enables basic auth).
 * ```PORT``` - Port to listen on (default: 3000).
 * ```UNICORN_WORKERS``` - Number of unicorn workers to spawn (default: development 1, otherwisee 3) .
 * ```UNICORN_BACKLOG``` - Depth of unicorn backlog (default: 16).
 
 # Considerations
 
-...
+# Credits
+
+Generated with [Raygun](https://github.com/carbonfive/raygun).

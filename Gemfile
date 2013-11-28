@@ -17,6 +17,7 @@ gem 'simple_form', '~> 3.0'
 gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'
+gem 'underscore-rails'
 
 # Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
 gem 'therubyracer', platforms: :ruby
@@ -32,23 +33,19 @@ group :test, :development do
   gem 'jasminerice', github: 'bradphelan/jasminerice' # Latest release still depends on haml.
   gem 'poltergeist'
   gem 'rspec-rails'
-  gem 'simplecov'
-  #gem 'cane'
   #gem 'capybara-email'
-  #gem 'morecane'
-  #gem 'quiet_assets'
-  #gem 'timecop'
+  gem 'quiet_assets'
+  gem 'timecop'
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'foreman'
-  gem 'growl'
   gem 'guard', '~> 2'
   gem 'guard-jasmine'
   gem 'guard-livereload'
   gem 'guard-rspec'
+  gem 'guard-rails'
   gem 'launchy'
   gem 'rb-fsevent'
 end
