@@ -6,13 +6,13 @@ feature "Static Pages" do
   scenario "/ should include the application name in its title" do
     visit root_path
 
-    expect(page).to have_title "App Prototype"
+    expect(page).to have_title "Brewzly"
   end
 
   # Another contrived example, this one relies on the javascript driver.
-  scenario "/ should include the warm closing text 'Enjoy!'", js: true do
+  scenario "/ should show a github moment of zen'", js: true do
     visit root_path
 
-    expect(page).to have_content "Enjoy!"
+    expect(page).to have_selector('.zen', /\w+/)
   end
 end
