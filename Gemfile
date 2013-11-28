@@ -21,6 +21,8 @@ gem 'uglifier'
 # Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
 gem 'therubyracer', platforms: :ruby
 #gem 'libv8'#, '~> 3.11.8'
+gem 'newrelic_rpm'
+gem 'rollbar'
 
 group :test, :development do
   gem 'capybara'
