@@ -1,0 +1,11 @@
+coffee:
+  $(document).ready ->
+    apiEndpoint = 'https://api.github.com/zen'
+    quoteCallback = (quote) -> $('.zen').after quote
+    $.get apiEndpoint, quoteCallback
+
+.jumbotron
+  h1 Welcome!
+  br
+  p Soon there will be some fluff about what Brewzly is. Until then enjoy a Github moment of Zen
+  .zen

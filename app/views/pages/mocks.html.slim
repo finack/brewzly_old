@@ -1,0 +1,38 @@
+style[type="text/css"]
+.container-fluid
+  .row-fluid
+
+.container-narrow
+  .masthead
+    - # <ul class="nav nav-pills pull-right">
+    - # <li class="active"><a href="#">Home</a></li>
+    - # <li><a href="#">About</a></li>
+    - # <li><a href="#">Contact</a></li>
+    - # </ul>
+    h3.muted
+      | Brewzly : Enter the Flagon
+  hr
+  .jumbotron
+    h1
+      | MOCKS!
+    p.lead
+      | Come stare into my empty non functional vessels 
+  hr
+  .row-fluid.marketing
+    .span3
+      h4
+        | Timeline View
+      ul.unstyled
+        li
+          = link_to "Media Layout", page_path('mocks/media')
+        li
+          = link_to "Wells Layout", page_path('mocks/wells')
+    .span3
+      h4
+        | Calendar View
+      ul.unstyled
+
+    .span3
+      h4
+        | Edit View
+      ul.unstyled
