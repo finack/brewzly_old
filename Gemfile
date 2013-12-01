@@ -11,6 +11,7 @@ gem 'awesome_print'
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'high_voltage'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form', '~> 3.0'
@@ -18,6 +19,9 @@ gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'underscore-rails'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
 gem 'therubyracer', platforms: :ruby
@@ -28,9 +32,11 @@ gem 'rollbar'
 group :test, :development do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'fuubar'
   gem 'jasminerice', github: 'bradphelan/jasminerice' # Latest release still depends on haml.
+  gem 'pry-rails'
   gem 'poltergeist'
   gem 'rspec-rails'
   #gem 'capybara-email'

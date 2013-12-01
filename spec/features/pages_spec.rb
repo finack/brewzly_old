@@ -9,10 +9,8 @@ feature "Static Pages" do
     expect(page).to have_title "Brewzly"
   end
 
-  # Another contrived example, this one relies on the javascript driver.
   scenario "/ should show a github moment of zen'", js: true do
     visit root_path
-
     expect(page).to have_selector('.zen', /\w+/)
   end
 end
