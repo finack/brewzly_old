@@ -1,3 +1,5 @@
+// This is an example component from ember-app-kit
+
 export default Ember.Component.extend({
   classNames: ['pretty-color'],
   attributeBindings: ['style'],

@@ -1,16 +1,20 @@
 App = undefined
-module "Acceptances - Home",
+module 'Feature - Home Page',
   setup: ->
     App = startApp()
 
   teardown: ->
-    Ember.run App, "destroy"
+    Ember.run App, 'destroy'
 
-test "Home renders", ->
-  expect 3
-  visit("/").then ->
-    title = find("h2#title")
-    list = find("ul li")
-    equal title.text(), "Welcome to Ember"
-    equal list.length, 3
-    equal list.text(), "redyellowblue"
+test 'renders', ->
+  expect 2
+  visit('/').then ->
+    title = find '.wrapper nav.navbar .navbar-header a'
+    equal title.text(), "Brewzly"
+
+    chronicles = find '.wrapper nav.navbar .navbar-collapse ul'
+    equal chronicles.text(), "Chronicles"
+    
+    # list = find("ul li")
+    # equal list.length, 3
+    # equal list.text(), "redyellowblue"
