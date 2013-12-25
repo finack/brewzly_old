@@ -132,15 +132,15 @@ module.exports = (grunt) ->
   ]
   grunt.registerTask "createDistVersion", filterAvailable([
     "useminPrepare" # Configures concat, cssmin and uglify
-    "concat" # Combines css and javascript files
-    "cssmin" # Minifies css
-    "uglify" # Minifies javascript
-    "imagemin" # Optimizes image compression
+    "concat"        # Combines css and javascript files
+    "cssmin"        # Minifies css
+    "uglify"        # Minifies javascript
+    "imagemin"      # Optimizes image compression
     # 'svgmin',
-    "copy:dist" # Copies files not covered by concat and imagemin
-    "rev" # Appends 8 char hash value to filenames
-    "usemin" # Replaces file references
-    "htmlmin:dist" # Removes comments and whitespace
+    "copy:dist"     # Copies files not covered by concat and imagemin
+    "rev"           # Appends 8 char hash value to filenames
+    "usemin"        # Replaces file references
+    "htmlmin:dist"  # Removes comments and whitespace
   ])
   
   # Parallelize most of the build process
@@ -158,7 +158,6 @@ module.exports = (grunt) ->
         "buildStyles"
         "buildIndexHTML:debug"
       ]
-
   
   # Templates
   grunt.registerTask "buildTemplates:dist", filterAvailable([
@@ -208,7 +207,6 @@ module.exports = (grunt) ->
       return  if key is "options"
       config.tasks.push "karma:server:run"
       grunt.config "watch." + key, config
-
 
   grunt.registerTask "createResultDirectory", ->
     grunt.file.mkdir "tmp/result"

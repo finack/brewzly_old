@@ -56,21 +56,28 @@ module.exports = (grunt) ->
   ###
   grunt.registerTask "expressServer", (target, proxyMethodToUse) ->
     require "express-namespace"
-    app = express()
     done = @async()
-    proxyMethod = proxyMethodToUse or grunt.config("express-server.options.APIMethod")
+
+    app = express()
     app.use lock
     app.use express.compress()
+    
+    proxyMethod = proxyMethodToUse or grunt.config("express-server.options.APIMethod")
 
     if proxyMethod is "stub"
       grunt.log.writeln "Using API Stub"
       app.use express.json()
       app.use express.urlencoded()
-      require("../api-stub/routes") app
+      require("../api/stubs") app
     else if proxyMethod is "proxy"
       proxyURL = grunt.config("express-server.options.proxyURL")
       grunt.log.writeln "Proxying API requests to: " + proxyURL
       app.all "/api/*", passThrough(proxyURL)
+    else
+      grunt.log.writeln 'Serving APIs directly'
+      db = require '../api/db'
+      db.setup()
+      require('../api/routes') app, db
 
     if target is "debug"
       app.use require("connect-livereload")()  if Helpers.isPackageAvailable("connect-livereload")

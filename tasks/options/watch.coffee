@@ -1,9 +1,11 @@
-Helpers = require("../helpers")
-scripts = "{app,tests}/**/*.{js,coffee,em}"
+Helpers   = require("../helpers")
+scripts   = "{app,tests}/**/*.{js,coffee,em}"
 templates = "app/templates/**/*.{hbs,handlebars,hjs,emblem}"
-styles = "app/styles/**/*.{css,sass,scss,less,styl}"
+styles    = "app/styles/**/*.{css,sass,scss,less,styl}"
 indexHTML = "app/index.html"
-other = "{app,tests,public,vendor}/**/*"
+api       = "api/**/*.{js,coffee,em}"
+other     = "{app,tests,public,vendor}/**/*"
+
 module.exports =
   scripts:
     files: [scripts]
@@ -37,6 +39,14 @@ module.exports =
       "unlock"
     ]
 
+  # api:
+    # files: [api]
+    # tasks: [
+      # "lock"
+      # "expressServer:debug"
+      # "unlock"
+    # ]
+  
   other:
     files: [
       other
