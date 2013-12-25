@@ -9,6 +9,7 @@
         = linkTo 'Brewzly' 'index' class='navbar-brand'
       .collapse.navbar-collapse
           ul.nav.navbar-nav
-              = linkTo 'Chronicles' 'index' class='navbar-brand'
+            li
+              = linkTo 'Chronicles' 'chronicles'
   .container
     outlet

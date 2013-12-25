@@ -1,11 +1,13 @@
 Router = Ember.Router.extend()
 
-Router.map ->
-  @route "component-test"
-  @route "helper-test"
+Router.reopen
+  location: 'history'
 
-# this.resource('posts', function() {
-#   this.route('new');
-# });
+Router.map ->
+  @resource 'chronicles'
+  # @resource 'chronicle', { path: '/chronicle/:chronicle_id' }
+
+  @route 'component-test'
+  @route 'helper-test'
 
 `export default Router`

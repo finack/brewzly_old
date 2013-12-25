@@ -26,3 +26,14 @@ function strictEqual(actual, expected, message) {
 window.exists = exists;
 window.equal = equal;
 window.strictEqual = strictEqual;
+
+function stubEndpointForHttpRequest(url, json) {
+  $.mockjax({
+    url: url,
+    dataType: 'json',
+    responseText: json
+  });
+}
+
+// $.mockjaxSettings.logging = false;
+// $.mockjaxSettings.responseTime = 0;

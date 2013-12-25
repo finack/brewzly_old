@@ -1,12 +1,11 @@
 module.exports = (grunt) ->
 
-  express = require("express")
-  lockFile = require("lockfile")
-  Helpers = require("./helpers")
-  fs = require("fs")
-  path = require("path")
-  request = require("request")
-  
+  Helpers  = require './helpers'
+  express  = require 'express'
+  fs       = require 'fs'
+  lockFile = require 'lockfile'
+  path     = require 'path'
+  request  = require 'request'
   
   lock = (req, res, next) -> # Works with tasks/locking.js
     (retry = ->
@@ -17,7 +16,7 @@ module.exports = (grunt) ->
     )()
 
   static_ = (options) ->
-    (req, res, next) -> # Gotta catch 'em all (and serve index.html)
+    (req, res, next) ->
       filePath = ""
       if options.directory
         regex = new RegExp("^" + (options.urlRoot or ""))
@@ -30,7 +29,7 @@ module.exports = (grunt) ->
       else if options.file
         filePath = options.file
       else
-        throw new Error("static() isn't properly configured!")
+        throw new Error("static_() isn't properly configured!")
       fs.stat filePath, (err, stats) ->
         if err # Not a file, not a folder => can't handle it
           next()
@@ -99,4 +98,4 @@ module.exports = (grunt) ->
     app.listen port
 
     grunt.log.ok "Started development server on port %d.", port
-    done()  unless @flags.keepalive
+    done() unless @flags.keepalive

@@ -10,6 +10,7 @@
     "handlebars": "~1.1.0",
     "ic-ajax": "~0.2",
     "jquery": "~1.10.2",
+    "jquery-mockjax": "*",
     "qunit": "~1.12.0"
   }
 }
