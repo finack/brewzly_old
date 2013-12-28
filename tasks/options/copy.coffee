@@ -60,6 +60,12 @@ module.exports =
         src: ["config/**/*.js"]
         dest: "tmp/result/"
       }
+      {
+        expand: true
+        cwd: "vendor/bootstrap/dist/fonts"
+        src: ["*"]
+        dest: "tmp/result/fonts/"
+      }
     ]
 
   imageminFallback:

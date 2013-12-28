@@ -2,48 +2,9 @@ module.exports = (grunt) ->
 
   Helpers  = require './helpers'
   express  = require 'express'
-  fs       = require 'fs'
-  lockFile = require 'lockfile'
-  path     = require 'path'
   request  = require 'request'
-  
-  lock = (req, res, next) -> # Works with tasks/locking.js
-    (retry = ->
-      if lockFile.checkSync("tmp/connect.lock")
-        setTimeout retry, 30
-      else
-        next()
-    )()
-
-  static_ = (options) ->
-    (req, res, next) ->
-      filePath = ""
-      if options.directory
-        regex = new RegExp("^" + (options.urlRoot or ""))
-        
-        # URL must begin with urlRoot's value
-        unless req.path.match(regex)
-          next()
-          return
-        filePath = options.directory + req.path.replace(regex, "")
-      else if options.file
-        filePath = options.file
-      else
-        throw new Error("static_() isn't properly configured!")
-      fs.stat filePath, (err, stats) ->
-        if err # Not a file, not a folder => can't handle it
-          next()
-          return
-        
-        # Is it a directory? If so, search for an index.html in it.
-        filePath = path.join(filePath, "index.html")  if stats.isDirectory()
-        
-        # Serve the file
-        res.sendfile filePath, (err) ->
-          if err
-            next()
-            return
-          grunt.verbose.ok "Served: " + filePath
+  static_  = require './middleware/static'
+  lock     = require './middleware/lock'
 
   passThrough = (target) ->
     (req, res) ->
@@ -59,9 +20,13 @@ module.exports = (grunt) ->
     done = @async()
 
     app = express()
-    app.use lock
+    app.use lock()
     app.use express.compress()
     app.use express.bodyParser()
+
+    emberPaths = [
+      new RegExp("^/chronicle.*")
+    ]
     
     proxyMethod = proxyMethodToUse or grunt.config("express-server.options.APIMethod")
 
@@ -95,12 +60,20 @@ module.exports = (grunt) ->
         urlRoot: "/tests"
         directory: "tests"
       )
+      app.use static_(
+        urlRoot: "/fonts"
+        directory: "vendor/bootstrap/dist/fonts"
+      )
       app.use static_(directory: "tmp/result")
-      app.use static_(file: "tmp/result/index.html")
+      app.use static_(file: "tmp/result/index.html", paths: emberPaths)
     else
-      app.use lock
+      app.use lock()
       app.use static_(directory: "dist")
-      app.use static_(file: "dist/index.html")
+      app.use static_(
+        urlRoot: "/fonts"
+        directory: "dist/fonts"
+      )
+      app.use static_(file: "dist/index.html", paths: emberPaths)
 
     port = process.env.PORT or 8000
     app.listen port
