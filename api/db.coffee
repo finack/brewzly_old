@@ -1,3 +1,4 @@
+_        = require('lodash')
 r        = require("rethinkdb")
 util     = require("util")
 assert   = require("assert")
@@ -45,6 +46,17 @@ module.exports.setup = ->
               logdebug "[INFO ] RethinkDB table '%s' created", tableName
         ) tbl
 
+module.exports.findChronicle = (id, callback) ->
+  onConnect (err, connection) ->
+    logdebug "[INFO ][%s][findChronicles] chronicle %j", connection["_id"], id
+    r.db(dbConfig.db).table('chronicles').get(id).run connection, (err, chronicle) ->
+      if err
+        logerror "[ERROR][%s][findChronicles][collect] %s:%s\n%s", connection["_id"], err.name, err.msg, err.message
+        callback err
+      else
+        callback null, chronicle
+      connection.close()
+
 module.exports.findChronicles = (callback) ->
   onConnect (err, connection) ->
     logdebug "[INFO ][%s][findChronicles] All Chronicles", connection["_id"]
@@ -60,3 +72,30 @@ module.exports.findChronicles = (callback) ->
           else
             callback null, result
       connection.close()
+
+module.exports.saveChronicle = (chronicle, callback) ->
+  onConnect (err, connection) ->
+    r.db(dbConfig.db).table('chronicles').insert(chronicle).run connection, (err, result) ->
+      unless err is null
+        logerror "[ERROR][%s][saveChronicle] %s:%s\n%s", connection["_id"], err.name, err.msg, err.message
+        callback err
+      else
+        if result.inserted is 1
+          callback null, _.merge(chronicle, { "id" : result.generated_keys.pop() })
+        else
+          callback null, false
+    connection.close()
+
+module.exports.deleteChronicle = (id, callback) ->
+  onConnect (err, connection) ->
+    r.db(dbConfig.db).table('chronicles').get(id).delete().run connection, (err, result) ->
+      unless err is null
+        logerror "[ERROR][%s][deleteChronicle] %s:%s\n%s", connection["_id"], err.name, err.msg, err.message
+        callback err, null
+      else
+        if result.deleted is 1
+          callback null, true
+        else
+          throw "Database deleted multiple values"
+          callback null, false
+    connection.close()

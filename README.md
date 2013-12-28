@@ -4,6 +4,14 @@
 
 ## Getting Started
 
+### Debugging Node / Express
+
+```sh
+node --debug $(which grunt) server
+
+node-inspector
+```
+
 ### Stubbing /api
 
 `grub test:server:stub` or `grub server:stub`

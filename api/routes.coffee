@@ -1,42 +1,62 @@
 debug = require("debug")("api:routes")
 
-module.exports = (server,db) ->
+module.exports = (app,db) ->
   
-  server.namespace "/api", ->
+  app.namespace "/api", ->
 
-    server.get '/chronicles', (req, res) ->
-      db.findChronicles (err, chronicles) ->
-        debug "[DEBUG][/api/chronicles] count:%s -> {error:%j}", chronicles.length, err
-        if err
-          res.send 500
-          return
+    app.namespace '/chronicles', ->
 
-        if chronicles is null
-          res.send 404
-        else
-          res.send { "chronicles": chronicles }
+      # Find All
+      app.get '/', (req, res) ->
+        db.findChronicles (err, chronicles) ->
+          debug "[DEBUG][/api/chronicles] count:%s -> {error:%j}", chronicles.length, err
+          if err
+            res.send 500
+            return
+
+          if chronicles is null
+            res.send 404
+          else
+            res.send { "chronicles": chronicles }
+      
+      # Create
+      app.post '/', (req, res) ->
+        post = req.body.chronicle
+        db.saveChronicle post, (err, chronicle) ->
+          debug "[DEBUG][POST /api/chronicles] %j : %j", err, chronicle
+
+          if chronicle is false
+            res.send 422
+          else
+            res.send { "chronicle": chronicle }
     
-    # Return fixture data for '/api/posts/:id'
-    server.get "/chronicle/:id", (req, res) ->
-      chronicle =
-        chronicle:
-          id: 1
-          name: "Batch 33 - Golden Brown"
-          brewdate: "???"
-          chapters: [
-            "1"
-            "2"
-          ]
+    app.namespace '/chronicles/:id', ->
 
-        chapters: [
-          {
-            id: "1"
-            body: "Rails is unagi"
-          }
-          {
-            id: "2"
-            body: "Omakase O_o"
-          }
-        ]
+      # Find
+      app.get '/', (req, res) ->
+        id = req.param('id')
+        db.findChronicle id, (err, chronicle) ->
+          debug "[DEBUG][/api/chronicle] count:%s -> {error:%j}", chronicle.length, err
+          if err
+            res.send 500
+            return
 
-      res.send chronicle
+          if chronicle is null
+            res.send 404
+          else
+            res.send { "chronicles": chronicle }
+      
+      # Update
+      app.put '/', (req, res) ->
+        res.send('GET forum ' + req.params.id + ' edit page')
+
+      # Delete
+      app.del '/', (req, res) ->
+        id = req.param('id')
+        db.deleteChronicle id, (err, results) ->
+          debug "[DEBUG][DELETE /api/chronicles] %j : %j", err, id
+          if err or results is false
+            res.send 500
+            return
+
+          res.send 204

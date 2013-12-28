@@ -9,14 +9,12 @@ ChroniclesController = Ember.ArrayController.extend
         isCompleted: false
       )
 
-      onSucess = (resp) ->
-        @$('#new_chronicle').modal('hide')
-        @transitionToRoute('chronicle/show', resp)
+      onSucess = (resp) =>
+        $('#new_chronicle').modal('hide')
+        @transitionToRoute('chronicle', resp)
 
       onFailure = (resp) ->
-        #TODO(p) Display server side validation errors
-        #TODO(p) Delete chronicle that was not saved (#deleteRecord not working)
-        chronicle.destroyRecord()
+        chronicle.deleteRecord()
         $('#new_chronicle').modal('hide')
         alert "Could not save #{chronicle.name}"
 

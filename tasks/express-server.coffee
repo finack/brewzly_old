@@ -61,6 +61,7 @@ module.exports = (grunt) ->
     app = express()
     app.use lock
     app.use express.compress()
+    app.use express.bodyParser()
     
     proxyMethod = proxyMethodToUse or grunt.config("express-server.options.APIMethod")
 

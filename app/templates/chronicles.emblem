@@ -6,8 +6,7 @@
           span.glyphicon.glyphicon-plus
       .list-group
         each controller
-          // linkTo 'chronicle' this
-          a.list-group-item href="#"
+          linkTo 'chronicle' this class="list-group-item"
             .row
               .col-sm-8
                 h4.list-group-item-heading = name

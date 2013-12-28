@@ -55,6 +55,7 @@
     "karma-qunit": "~0.0.3",
     "load-grunt-config": "git://github.com/Pradeek/load-grunt-config.git",
     "lockfile": "~0.3.4",
+    "lodash": "~2.4.1",
     "loom": "~3.1.2",
     "loom-generators-ember-appkit": "~1.0.2",
     "originate": "~0.1.5",
@@ -87,6 +88,7 @@
     "grunt-usemin": "~0.1.13",
     "load-grunt-config": "git://github.com/Pradeek/load-grunt-config.git",
     "lockfile": "~0.3.4",
+    "lodash": "~2.4.1",
     "originate": "~0.1.5",
     "request": "~2.27.0",
     "rethinkdb": "~1.11.0-1"

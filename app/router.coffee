@@ -5,7 +5,7 @@ Router.reopen
 
 Router.map ->
   @resource 'chronicles'
-  # @resource 'chronicle', { path: '/chronicle/:chronicle_id' }
+  @resource 'chronicle', { path: '/chronicle/:chronicle_id' }
 
   @route 'component-test'
   @route 'helper-test'
