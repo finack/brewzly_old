@@ -1,5 +1,7 @@
 # Brewzly
 
+[![Build Status](https://travis-ci.org/finack/brewzly.png?branch=feature/chronicles)](https://travis-ci.org/finack/brewzly)
+
 ## Getting Started
 
 ### Stubbing /api

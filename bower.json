@@ -7,7 +7,7 @@
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
     "ember-testing-httpRespond": "~0.1.1",
     "emblem.js": "*",
-    "handlebars": "~1.1.0",
+    "handlebars": "~1.1.2",
     "ic-ajax": "~0.2",
     "jquery": "~1.10.2",
     "jquery-mockjax": "*",

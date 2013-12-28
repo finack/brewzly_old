@@ -16,16 +16,16 @@
     "start": "grunt server",
     "build": "grunt build:debug",
     "test": "grunt test:ci",
-    "postinstall": "bower cache clean && bower install && grunt dist"
+    "postinstall": "rm -Rf .bower && bower install && grunt dist"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/stefanpenner/ember-app-kit.git"
+    "url": "git://github.com/finack/brewzly.git"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "bower": "~1.2.7",
+    "bower": "1.2.8",
     "connect-livereload": "~0.3.1",
     "express": "~3.4.2",
     "express-namespace": "~0.1.1",
@@ -60,7 +60,8 @@
     "request": "~2.27.0"
   },
   "dependencies": {
-    "bower": "~1.2.7",
+    "bower": "1.2.8",
+    "debug": "~0.7.4",
     "express": "~3.4.2",
     "express-namespace": "~0.1.1",
     "grunt": "~0.4.2",
