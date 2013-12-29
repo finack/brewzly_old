@@ -1,0 +1,6 @@
+{
+  "web-port": 8888,
+  "save-live-edit": false,
+  "no-preload": true,
+  "hidden": [ "node_modules/.*", "vendor/.*" ]
+}

@@ -1,0 +1,29 @@
+.row
+  .col-lg-8
+    .panel.panel-default
+      .panel-body
+        button.btn.btn-link.pull-right type="button" data-toggle="modal" data-target="#new_chronicle"
+          span.glyphicon.glyphicon-plus
+      .list-group
+        each controller
+          linkTo 'chronicle' this class="list-group-item"
+            .row
+              .col-sm-8
+                h4.list-group-item-heading = name
+                p.list-group-item-text = brewdate
+              .col-sm-1.pull-right
+                button.btn.btn-link.pull-right click="deleteChronicle this bubbles=false" type="button"
+                  span.glyphicon.glyphicon-minus
+
+.modal.fade#new_chronicle
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close click="clearChronicleModal" type="button" aria-hidden="true"
+          span.glyphicon.glyphicon-remove
+        h4.modal-title Add new Chronicle
+      .modal-body.form-group.form-inline
+        = input type="text" id="name" placeholder="Name of chronicle" value=newChronicle action="createChronicle" class="form-control" onEvent=null
+      .modal-footer
+        button.btn.btn-default click="clearChronicleModal" type="button" Close
+        button.btn.btn-primary click="createChronicle" type="button" Save changes
