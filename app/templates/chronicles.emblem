@@ -15,7 +15,7 @@
                 button.btn.btn-link.pull-right click="deleteChronicle this bubbles=false" type="button"
                   span.glyphicon.glyphicon-minus
 
-.modal.fade#new_chronicle
+.modal.fade#new_chronicle role='modal' aria-hidden='true'
   .modal-dialog
     .modal-content
       .modal-header

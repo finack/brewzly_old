@@ -15,8 +15,10 @@ module.exports = function(config) {
       'vendor/FakeXMLHttpRequest/fake_xml_http_request.js',
       'vendor/fakehr/fakehr.js',
       'vendor/ember-testing-httpRespond/httpRespond-1.1.js',
+      'vendor/bootstrap/dist/js/bootstrap.js',
       'tmp/result/assets/templates.js',
       'tmp/result/assets/app.js',
+      'tmp/result/assets/app.css',
       'tmp/transpiled/tests/**/*.js',
       'tests/test_helper.js',
       'tests/test_loader.js'

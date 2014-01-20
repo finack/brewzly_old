@@ -16,6 +16,8 @@ test("it exists", function(){
   ok(route instanceof Index);
 });
 
-test("#model", function(){
-  deepEqual(route.model(), ['red', 'yellow', 'blue']);
-});
+/*
+ * test("#model", function(){
+ *   deepEqual(route.model(), ['red', 'yellow', 'blue']);
+ * });
+ */

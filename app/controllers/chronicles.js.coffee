@@ -10,13 +10,15 @@ ChroniclesController = Ember.ArrayController.extend
       )
 
       onSucess = (resp) =>
+        Ember.Logger.info "chronicleModel saved id:#{chronicle.id} name:#{chronicle.get 'name'}"
         $('#new_chronicle').modal('hide')
         @transitionToRoute('chronicle', resp)
 
       onFailure = (resp) ->
+        Ember.Logger.error "chronicleModel could not save id:#{chronicle.id} name:#{chronicle.get 'name'}"
         chronicle.deleteRecord()
         $('#new_chronicle').modal('hide')
-        alert "Could not save #{chronicle.name}"
+        alert "Could not save #{chronicle.get 'name'}"
 
       @set 'newChronicle', ''
       chronicle.save().then onSucess, onFailure
