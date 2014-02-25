@@ -1,11 +1,19 @@
 ChroniclesController = Ember.ArrayController.extend
+  # itemController: 'ChronicleController'
+  sortProperties: ['brewedMoment']
+  sortAscending: true
+
+
   actions:
     createChronicle: ->
       name = @get 'newChronicle'
+      # brewdate = new Date(Ember.Date.parse(@get 'brewdate'))
+      brewedAt = @get 'brewedAt'
       return unless name.trim
 
       chronicle = @store.createRecord( 'chronicle',
         name: name
+        brewedAt: brewedAt.toJSON()
         isCompleted: false
       )
 

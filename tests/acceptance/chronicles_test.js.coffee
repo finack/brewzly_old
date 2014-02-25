@@ -43,7 +43,7 @@ test 'display list of chronicles', ->
     equal rows, 3
 
 test 'Add new chronicle', ->
-  expect 5
+  expect 7
 
   visit('/chronicles')
 
@@ -54,11 +54,16 @@ test 'Add new chronicle', ->
     andThen ->
       fillIn ".modal input#name", "Hello World"
       equal find(".modal input#name").val(), "Hello World", "Enter chronicle's name"
+
+      click "input .brew-date"
+      click ".datepicker tr td:first"
+
       click ".modal button.btn-primary"
 
       andThen ->
         response = JSON.parse fakehr.match('POST', '/api/chronicles').requestBody
         ok response
+        ok response.chroncile.brewdate
         response.chronicle.id = '1234'
         httpRespond "post", "/api/chronicles", response
 

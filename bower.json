@@ -2,6 +2,7 @@
   "name": "brewzly",
   "dependencies": {
     "bootstrap": "~3.0.3",
+    "bootstrap-datepicker": "~1.3.0",
     "ember": "~1.2.0",
     "ember-data": "~1.0.0-beta.4",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
@@ -11,6 +12,7 @@
     "ic-ajax": "~0.2",
     "jquery": "~1.10.2",
     "jquery-mockjax": "*",
-    "qunit": "~1.12.0"
+    "qunit": "~1.12.0",
+    "momentjs": "~2.5.0"
   }
 }

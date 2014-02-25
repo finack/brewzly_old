@@ -8,17 +8,17 @@ module.exports = (server) ->
           {
             id: 1
             name: "Batch 33 - Golden Brown"
-            brewdate: "???"
+            brewedAt: "???"
           }
           {
             id: 2
             name: "Batch 60 - Brown Promise"
-            brewdate: "???"
+            brewedAt: "???"
           }
           {
             id: 3
             name: "Batch 77 - Reverse Cowgirl"
-            brewdate: "???"
+            brewedAt: "???"
           }
         ]
 
@@ -30,7 +30,7 @@ module.exports = (server) ->
         chronicle:
           id: 1
           name: "Batch 33 - Golden Brown"
-          brewdate: "???"
+          brewedAt: "???"
           chapters: [
             "1"
             "2"

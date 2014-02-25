@@ -6,9 +6,14 @@ App = Ember.Application.extend(
   LOG_TRANSITIONS: true
   LOG_TRANSITIONS_INTERNAL: true
   LOG_VIEW_LOOKUPS: true
+  LOG_BINDINGS: true
   modulePrefix: "brewzly"
   Resolver: Resolver["default"]
 )
+
+# Ember.onerror = (error) ->
+  # Ember.Logger.assert false, error
+  # Ember.Logger.error error.stack
 
 Ember.RSVP.configure "onerror", (error) ->
   

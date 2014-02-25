@@ -74,6 +74,8 @@ module.exports.findChronicles = (callback) ->
       connection.close()
 
 module.exports.saveChronicle = (chronicle, callback) ->
+  chronicle.brewedAt = new Date(chronicle.brewedAt) if chronicle.brewedAt
+  chronicle.updatedAt = new Date
   onConnect (err, connection) ->
     r.db(dbConfig.db).table('chronicles').insert(chronicle).run connection, (err, result) ->
       unless err is null

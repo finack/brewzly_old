@@ -1,5 +1,10 @@
 ChronicleModel = DS.Model.extend
   name: DS.attr 'string'
-  brewdate: DS.attr 'date'
+  brewedAt: DS.attr 'string'
+
+  brewedMoment: (->
+    moment.utc(@get 'brewedAt')
+  ).property('brewedAt')
+
 
 `export default ChronicleModel`
