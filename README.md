@@ -16,6 +16,10 @@ node-inspector
 
 `grub test:server:stub` or `grub server:stub`
 
+### Testing
+
+`jasmine-node --coffee --verbose --captureExceptions spec`
+
 ## Credits and Thanks
 
 * (Ember App Kit)[https://github.com/stefanpenner/ember-app-kit] for jumpstarting the project

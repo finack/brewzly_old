@@ -45,6 +45,7 @@ module.exports.setup = ->
             else
               logdebug "[INFO ] RethinkDB table '%s' created", tableName
         ) tbl
+    connection.close()
 
 module.exports.findChronicle = (id, callback) ->
   onConnect (err, connection) ->
