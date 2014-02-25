@@ -94,17 +94,12 @@ module.exports = (grunt) ->
   grunt.registerTask "test", "Run your apps's tests once. Uses Google Chrome by default. Logs coverage output to tmp/result/coverage.", [
     "clean:debug"
     "build:debug"
-    "karma:test"
+    #TOOD jasmine
   ]
   grunt.registerTask "test:ci", "Run your app's tests in PhantomJS. For use in continuous integration (i.e. Travis CI).", [
     "clean:debug"
     "build:debug"
-    "karma:ci"
-  ]
-  grunt.registerTask "test:browsers", "Run your app's tests in multiple browsers (see tasks/options/karma.js for configuration).", [
-    "clean:debug"
-    "build:debug"
-    "karma:browsers"
+    #TODO jasmine
   ]
   grunt.registerTask "test:server", "Start a Karma test server and the standard development server.", (proxyMethod) ->
     expressServerTask = "expressServer:debug"
@@ -112,12 +107,10 @@ module.exports = (grunt) ->
     grunt.task.run [
       "clean:debug"
       "build:debug"
-      "karma:server"
+      #TODO jasmine
       expressServerTask
-      "addKarmaToWatchTask"
       "watch"
     ]
-
   
   # Worker tasks
   # =================================
@@ -201,13 +194,6 @@ module.exports = (grunt) ->
     "preprocess:indexHTMLDebugTests"
   ]
   
-  # Appends `karma:server:run` to every watch target's tasks array
-  grunt.registerTask "addKarmaToWatchTask", ->
-    _.forIn grunt.config("watch"), (config, key) ->
-      return  if key is "options"
-      config.tasks.push "karma:server:run"
-      grunt.config "watch." + key, config
-
   grunt.registerTask "createResultDirectory", ->
     grunt.file.mkdir "tmp/result"
 
