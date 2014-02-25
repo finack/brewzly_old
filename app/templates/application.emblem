@@ -1,0 +1,15 @@
+.wrapper
+  nav.navbar.navbar-default.navbar-fixed-top role='navigation'
+    .container
+      .navbar-header
+        button.button.navbar-toggle data-toggle='collapse' data-target='.navbar-collapse'
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = linkTo 'Brewzly' 'index' class='navbar-brand'
+      .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              = linkTo 'Chronicles' 'chronicles'
+  .container
+    outlet
