@@ -2,45 +2,50 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'unicorn'
-gem 'rack-canonical-host'
-gem 'rails', '~> 4.0.1'
+## Framework
+gem 'high_voltage'
+gem 'newrelic_rpm'
 gem 'pg'
+gem 'rack-canonical-host'
+gem 'rails', '~> 4.0.4'
+gem 'rollbar'
+gem 'simple_form', '~> 3.0'
+# Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
+gem 'therubyracer', platforms: :ruby
+gem 'unicorn'
 
-gem 'awesome_print'
+## Asset Pipeline
 gem 'bootstrap-sass'
 gem 'coffee-rails'
-gem 'high_voltage'
 gem 'font-awesome-rails'
-gem 'jquery-rails'
-gem 'sass-rails'
-gem 'simple_form', '~> 3.0'
-gem 'slim-rails'
-gem 'turbolinks'
-gem 'uglifier'
-gem 'underscore-rails'
+gem 'sass-rails', '~> 4.0.2'
 
+gem 'slim', '2.0.0' # Pinned due to tilt dependency conflict
+gem 'slim-rails', '~> 2.1.3'
+gem 'uglifier'
+
+## Authentication
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-# Heroku suggests that these gems aren't necessary, but they're required to compile less assets on deploy.
-gem 'therubyracer', platforms: :ruby
-#gem 'libv8'#, '~> 3.11.8'
-gem 'newrelic_rpm'
-gem 'rollbar'
+## Frontend
+gem 'backbone-rails'
+gem 'jquery-rails'
+gem 'marionette-rails'
+gem 'underscore-rails'
 
 group :test, :development do
+  gem 'awesome_print'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'fuubar'
-  gem 'jasminerice', github: 'bradphelan/jasminerice' # Latest release still depends on haml.
-  gem 'pry-rails'
+  gem 'jasmine-rails'
   gem 'poltergeist'
-  gem 'rspec-rails'
-  #gem 'capybara-email'
+  gem 'pry-rails'
   gem 'quiet_assets'
+  gem 'rspec-rails'
   gem 'timecop'
 end
 

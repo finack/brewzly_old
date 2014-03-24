@@ -4,4 +4,5 @@ Brewzly::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'sign_out', to: 'sessions#destroy', as: 'sign_out', via: [:get, :post]
 
+  mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 end
